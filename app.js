@@ -3,7 +3,7 @@ const app = express();
 const morgan = require("morgan");
 const main = require("./views/main");
 const homepage = main();
-// const { db } = require('./models');
+//const { db } = require('./models');
 const models = require('./models')
  
 
@@ -23,7 +23,8 @@ app.get('/', (req, res) => {
 const PORT = 3000;
 
 const init = async () => {
-  await models.db.sync();
+  await models.db.sync({force: true});
+  //await models.User.sync({force: true});
 
   app.listen(PORT, () => {
     console.log(`App listening in port ${PORT}`)
